@@ -8,15 +8,36 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var viewModel = ChatViewModel()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationView {
+            List {
+                ForEach(viewModel.conversations, id: \.self) { conversation in
+                    NavigationLink(destination: ChatView(conversationID: conversation)) {
+                        Text(conversation)
+                    }
+                }
+                .onDelete(perform: viewModel.deleteConversation)
+            }
+            .navigationTitle("Discussions")
+            .toolbar {
+                Button(action: self.createConversation) {
+                    Image(systemName: "plus")
+                }
+            }
+            .onAppear {
+                viewModel.fetchConversations()
+            }
         }
-        .padding()
     }
+    
+    func createConversation() {
+        viewModel.createConversation(prePrompt: "") { _ in
+            viewModel.fetchConversations()
+        }
+    }
+
 }
 
 #Preview {
