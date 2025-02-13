@@ -1,7 +1,7 @@
 # Setup
 
 ## Prerequisites
-- Git clone and setup [Llama-ccp-API](git@github.com:MathieuDubart/Llama-cpp-API.git)
+- Git clone and setup [Llama-cpp-API](https://github.com/MathieuDubart/Llama-cpp-API.git)
 
 ## Setup
 - Git clone this repository `git@github.com:MathieuDubart/Llama-cpp-Chat.git`
